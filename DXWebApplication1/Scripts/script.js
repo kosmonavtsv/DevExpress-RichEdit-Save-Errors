@@ -83,7 +83,7 @@ function safeSaveRichEditor(richEditor, callback) {
             // pendingTimerID - means that DX has a pending request, that will be executed in {pendingPeriod} ms
             if (richEditor.core.serverDispatcher.isWaiting || richEditor.core.serverDispatcher.pendingTimerID) {
                 console.log('skip sendDocument')
-                setTimeout(() => sendDocument(), 50);
+                setTimeout(() => sendDocument(), 0);
                 return;
             }
             // Set pendingTimerID to prevent document synchronization

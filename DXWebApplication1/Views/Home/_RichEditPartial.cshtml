@@ -1,0 +1,16 @@
+@Html.DevExpress().RichEdit(settings =>
+{
+    settings.Name = "RichEditTest";
+    settings.CallbackRouteValues = new { Controller = "Home", Action = "RichEditPartial" };
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.Height = System.Web.UI.WebControls.Unit.Pixel(900);
+    settings.ClientSideEvents.Init = "function(s,e) { RichEditTestInit(s,e); }";
+    settings.ClientSideEvents.BeginSynchronization = "function(s,e) { Begin_Synchronization(s,e); }";
+    settings.ClientSideEvents.EndSynchronization = "function(s,e) { End_Synchronization(s,e); }";
+    settings.ClientSideEvents.EndCallback = "function(s,e) { End_Callback(s,e); }";
+    settings.ClientSideEvents.BeginCallback = "function(s,e) { Begin_Callback(s,e); }";
+
+
+}).Open("123",
+    DevExpress.XtraRichEdit.DocumentFormat.Rtf,
+    () => File.ReadAllBytes(System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data/NoSpace.rtf"))).GetHtml()
